@@ -49,7 +49,7 @@ export class Coord {
     }
     return result;
   }
-  static stringToCoords(str: string) {
+  static toCoords(str: string) {
     var FIVE_CHARS = (1 + 2) << 4;
     var THREE_CHARS = 1 << 5;
     var results = [];
@@ -98,7 +98,7 @@ export class Coord {
     }
     return result;
   }
-  static coordsToString(arr: Coord[]) {
+  static toString(arr: Coord[]) {
     var ox = 0;
     var oy = 0;
     var result = '';

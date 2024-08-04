@@ -1,3 +1,20 @@
+import { baseUrl } from "./config";
+import { xfrpc } from "./request";
+
+export async function request(kind: Kind, id: number, detail: Partial<RequestDetail>): Promise<Poi> {
+  const re = await xfrpc("detail", [kind, id, detail], { url: baseUrl + "/poiagg" });
+  return re.poi as Poi;
+}
+
+type Kind = "osm" | "muni" | string
+
+export interface RequestDetail {
+  fetchPhoto: boolean
+  ratios: string[]
+  wikimedia: boolean
+  lang: string[]
+}
+
 export interface Root {
   poi: Poi;
   status: number;
@@ -115,7 +132,8 @@ export interface Poi2 {
 }
 
 export interface Contact2 {
-  phone: string;
+  phone?: string;
+  website?: string;
 }
 
 export interface Description {

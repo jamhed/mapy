@@ -1,10 +1,22 @@
-export interface SuggestRequest {
+import { baseUrl } from './config';
+
+export async function request(
+  params: Partial<Request> = { count: 5, lang: 'en' }
+): Promise<Result[]> {
+  const url = new URL(baseUrl + '/suggest');
+  Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value.toString()));
+  const response = await fetch(url);
+  const decodedResponse = (await response.json()) as Response;
+  return decodedResponse.result;
+}
+
+export interface Request {
   count: number;
   phrase: string;
   lang: string;
 }
 
-export interface SuggestResponse {
+export interface Response {
   deletedFromBack: number;
   hasCategory: number;
   hasGeo: number;
@@ -67,3 +79,4 @@ export interface UserData {
   wikiId: string;
   zipCode: string;
 }
+
