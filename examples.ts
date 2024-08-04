@@ -1,7 +1,7 @@
-import { suggest } from "./api.ts";
-import { Coord } from "./coords.ts";
-import { Poi } from "./interfaces.ts";
-import { xfrpc } from "./request.ts";
+import { suggest } from "mapy/api";
+import { Coord } from "mapy/coords";
+import { Poi } from "mapy/interfaces";
+import { xfrpc } from "mapy/request";
 
 async function route(args: any) {
   return await xfrpc("alterRoute", args, { url: "https://pro.mapy.cz/tplanner" });
