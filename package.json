@@ -1,0 +1,15 @@
+{
+	"name": "mapy",
+	"description": "mapy.cz fastrpc and rest interfaces",
+	"version": "0.1.0",
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"/dist"
+	],
+	"devDependencies": {
+		"prettier": "^3.3.3",
+		"typescript": "^5.5.4"
+	}
+}
