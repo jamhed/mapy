@@ -3,13 +3,17 @@ import { Coord } from "./coords";
 import { xfrpc } from "./request";
 
 export interface Point {
-  id: number
+  source: string | undefined
+  id: number | undefined
   x: number
   y: number
 }
 
-function makeId(p: Point) {
-  return p.id ? p.id : [p.x, p.y].join(",")
+function makeSource(p: Point) {
+  if (!p.id || !p.source) {
+    return { "source": "coor", "id": [p.x, p.y].join(",") }
+  }
+  return { "source": p.source, "id": p.id }
 }
 
 export interface Options {
@@ -51,8 +55,8 @@ export async function request(
 
   return await xfrpc("alterRoute", [
     [
-      { "source": "coor", "id": makeId(startPoint), "geometry": start, "routeParams": { "criterion": routeType(criterion) } },
-      { "source": "coor", "id": makeId(endPoint), "geometry": end }
+      { ...makeSource(startPoint), ...{ "geometry": start, "routeParams": { "criterion": routeType(criterion) } } },
+      { ...makeSource(endPoint), ... { "geometry": end } }
     ],
     {
       ...{
