@@ -1,5 +1,6 @@
-export { Coord } from './coords';
-export * as Detail from './detail';
-export { xfrpc } from './request';
-export * as Route from './route';
-export * as Suggest from './suggest';
+export { Coord } from './coords.js';
+export * as Detail from './detail.js';
+export { xfrpc } from './request.js';
+export * as Route from './route.js';
+export * as Suggest from './suggest.js';
+

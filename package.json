@@ -1,12 +1,16 @@
 {
   "name": "mapycz-api",
   "description": "mapy.cz fastrpc and REST interfaces",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "type": "module",
   "license": "MIT",
   "author": {
     "name": "Roman Galeev",
     "email": "jamhedd@gmail.com"
+  },
+  "scripts": {
+    "publish": "npx tsc && npm publish",
+    "lint": "npx prettier -w src"
   },
   "repository": "git://github.com/jamhed/mapy.git",
   "main": "dist/index.js",
