@@ -25,10 +25,10 @@ export interface Options {
 }
 
 const routeTypeMap = {
-  "fast_notoll": 111,
+  "fast_toll": 111,
   "fast": 112,
   "short": 113,
-  "short_notoll": 114,
+  "short_toll": 114,
   "bike1": 121,
   "bike2": 122,
   "bike3": 122,
