@@ -9,7 +9,7 @@
     "email": "jamhedd@gmail.com"
   },
   "scripts": {
-    "publish": "npx tsc && npm publish",
+    "pub": "npx tsc && npm publish",
     "lint": "npx prettier -w src"
   },
   "repository": "git://github.com/jamhed/mapy.git",
