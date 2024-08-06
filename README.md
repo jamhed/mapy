@@ -10,7 +10,11 @@ Build route of given type (see `Route.RouteType`) from start point to end point 
 ```ts
 import { Route } from "mapy";
 
-const response = await Route.request({x: 12.933840,y: 47.571277}, {x:12.8870615, y:47.5015969}, "turist2");
+const response = await Route.request(
+  {x: 12.933840,y: 47.571277},
+  {x:12.8870615, y:47.5015969},
+  "turist2"
+);
 ```
 
 ## Point of interest
@@ -20,7 +24,10 @@ Look up POI by name:
 ```ts
 import { Suggest } from "mapy";
 
-const results = await Suggest.request({ phrase: "Watzmannhaus", lang: "en" });
+const results = await Suggest.request({
+  phrase: "Watzmannhaus",
+  lang: "en"
+});
 const obj = results[0].userData;
 console.log(obj.longitude, obj.latitude, obj.id, obj.source);
 ```
