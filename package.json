@@ -1,6 +1,6 @@
 {
-  "name": "mapy",
-  "description": "mapy.cz fastrpc and rest interfaces",
+  "name": "mapycz-api",
+  "description": "mapy.cz fastrpc and REST interfaces",
   "version": "0.1.0",
   "type": "module",
   "license": "MIT",
