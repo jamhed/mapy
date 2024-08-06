@@ -1,4 +1,4 @@
-import { baseUrl } from './config';
+import { baseUrl } from './config.js';
 
 export async function request(
   params: Partial<Request> = { count: 5, lang: 'en' }
