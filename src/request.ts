@@ -27,7 +27,6 @@ const OPTIONS: Options = {
 
 export async function xfrpc(method: string, args: any[] = [], options: Partial<Options> = {}) {
   const _options = { ...OPTIONS, ...options };
-  console.log('xfrpc', method, args);
 
   const headers: any = {
     Accept: 'application/x-frpc',
