@@ -3,8 +3,21 @@
   "description": "mapy.cz fastrpc and rest interfaces",
   "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Roman Galeev",
+    "email": "jamhedd@gmail.com"
+  },
+  "repository": "git://github.com/jamhed/mapy.git",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "tags": [
+    "mapy.cz",
+    "fastrpc",
+    "maps",
+    "geodata",
+    "api"
+  ],
   "files": [
     "/dist"
   ],
