@@ -1,6 +1,6 @@
 import { baseUrl } from './config.js';
 import { Coord } from './coords.js';
-import { xfrpc } from './request.js';
+import { FetchOptions, xfrpc } from './request.js';
 
 export interface Point {
   source: string | undefined;
@@ -48,7 +48,8 @@ export async function request(
   startPoint: Point,
   endPoint: Point,
   criterion: RouteType,
-  options: Partial<Options> = {}
+  options: Partial<Options> = {},
+  fetch_options: Partial<FetchOptions> = { cache: true }
 ): Promise<Response> {
   const start = Coord.toString([new Coord(startPoint.x, startPoint.y)]);
   const end = Coord.toString([new Coord(endPoint.x, endPoint.y)]);
@@ -74,7 +75,8 @@ export async function request(
         ...options
       }
     ],
-    { url: baseUrl + '/tplanner' }
+    { url: baseUrl + '/tplanner' },
+    fetch_options
   );
 }
 

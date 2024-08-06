@@ -1,12 +1,13 @@
 import { baseUrl } from './config.js';
-import { xfrpc } from './request.js';
+import { FetchOptions, xfrpc } from './request.js';
 
 export async function request(
   kind: Kind,
   id: number,
-  detail: Partial<RequestDetail>
+  detail: Partial<RequestDetail>,
+  fetch_options: Partial<FetchOptions> = { cache: true }
 ): Promise<Poi> {
-  const re = await xfrpc('detail', [kind, id, detail], { url: baseUrl + '/poiagg' });
+  const re = await xfrpc('detail', [kind, id, detail], { url: baseUrl + '/poiagg' }, fetch_options);
   return re.poi as Poi;
 }
 

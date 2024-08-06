@@ -1,6 +1,11 @@
+import { md5 } from 'js-md5';
 import { Hints, parse, serializeCall } from './fastrpc.js';
 
-interface Header {
+export interface FetchOptions {
+  cache: boolean;
+}
+
+export interface Header {
   name: string;
   value: string;
 }
@@ -25,7 +30,14 @@ const OPTIONS: Options = {
   withCredentials: true
 };
 
-export async function xfrpc(method: string, args: any[] = [], options: Partial<Options> = {}) {
+const cache: Record<string, any> = {}
+
+export async function xfrpc(
+  method: string,
+  args: any[] = [],
+  options: Partial<Options> = {},
+  fetch_options: Partial<FetchOptions> = { cache: true }
+) {
   const _options = { ...OPTIONS, ...options };
 
   const headers: any = {
@@ -37,10 +49,20 @@ export async function xfrpc(method: string, args: any[] = [], options: Partial<O
     headers[name] = value;
   }
 
+  let key: string | undefined = undefined;
+  if (fetch_options.cache) {
+    key = md5(JSON.stringify({ ..._options, ...{ method, args } }));
+    console.log(key, method, key in cache);
+    if (key in cache) return cache[key];
+  }
+
   const response = await fetch(_options.url, {
-    body: new Uint8Array(serializeCall(method, args, options.hints)),
+    body: new Uint8Array(serializeCall(method, args, _options.hints)),
     method: 'POST',
     headers
   });
-  return parse(new Uint8Array(await response.arrayBuffer()));
+
+  const result = parse(new Uint8Array(await response.arrayBuffer()));
+  if (key) cache[key] = result;
+  return result;
 }

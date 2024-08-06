@@ -7,7 +7,14 @@ settings:
 importers:
 
   .:
+    dependencies:
+      js-md5:
+        specifier: ^0.8.3
+        version: 0.8.3
     devDependencies:
+      '@types/cacache':
+        specifier: ^17.0.2
+        version: 17.0.2
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -16,6 +23,15 @@ importers:
         version: 5.5.4
 
 packages:
+
+  '@types/cacache@17.0.2':
+    resolution: {integrity: sha512-IrqHzVX2VRMDQQKa7CtKRnuoCLdRJiLW6hWU+w7i7+AaQ0Ii5bKwJxd5uRK4zBCyrHd3tG6G8zOm2LplxbSfQg==}
+
+  '@types/node@22.1.0':
+    resolution: {integrity: sha512-AOmuRF0R2/5j1knA3c6G3HOk523Ga+l+ZXltX8SF1+5oqcXijjfTd8fY3XRZqSihEu9XhtQnKYLmkFaoxgsJHw==}
+
+  js-md5@0.8.3:
+    resolution: {integrity: sha512-qR0HB5uP6wCuRMrWPTrkMaev7MJZwJuuw4fnwAzRgP4J4/F8RwtodOKpGp4XpqsLBFzzgqIO42efFAyz2Et6KQ==}
 
   prettier@3.3.3:
     resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
@@ -27,8 +43,23 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  undici-types@6.13.0:
+    resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
+
 snapshots:
+
+  '@types/cacache@17.0.2':
+    dependencies:
+      '@types/node': 22.1.0
+
+  '@types/node@22.1.0':
+    dependencies:
+      undici-types: 6.13.0
+
+  js-md5@0.8.3: {}
 
   prettier@3.3.3: {}
 
   typescript@5.5.4: {}
+
+  undici-types@6.13.0: {}

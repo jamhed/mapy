@@ -33,7 +33,11 @@
     "/dist"
   ],
   "devDependencies": {
+    "@types/cacache": "^17.0.2",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "js-md5": "^0.8.3"
   }
 }
