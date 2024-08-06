@@ -1,4 +1,4 @@
-import { Hints, parse, serializeCall } from './fastrpc';
+import { Hints, parse, serializeCall } from './fastrpc.js';
 
 interface Header {
   name: string;

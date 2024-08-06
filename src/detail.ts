@@ -1,5 +1,5 @@
-import { baseUrl } from './config';
-import { xfrpc } from './request';
+import { baseUrl } from './config.js';
+import { xfrpc } from './request.js';
 
 export async function request(
   kind: Kind,

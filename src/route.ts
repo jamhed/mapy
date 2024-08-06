@@ -1,6 +1,6 @@
-import { baseUrl } from './config';
-import { Coord } from './coords';
-import { xfrpc } from './request';
+import { baseUrl } from './config.js';
+import { Coord } from './coords.js';
+import { xfrpc } from './request.js';
 
 export interface Point {
   source: string | undefined;
