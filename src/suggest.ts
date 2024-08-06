@@ -79,4 +79,3 @@ export interface UserData {
   wikiId: string;
   zipCode: string;
 }
-
