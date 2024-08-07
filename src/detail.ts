@@ -1,13 +1,14 @@
+import { Cache, FileCache } from './cache.js';
 import { baseUrl } from './config.js';
-import { FetchOptions, xfrpc } from './request.js';
+import { xfrpc } from './request.js';
 
 export async function request(
   kind: Kind,
   id: number,
   detail: Partial<RequestDetail>,
-  fetch_options: Partial<FetchOptions> = { cache: true }
+  cacher: Cache = new FileCache()
 ): Promise<Poi> {
-  const re = await xfrpc('detail', [kind, id, detail], { url: baseUrl + '/poiagg' }, fetch_options);
+  const re = await xfrpc('detail', [kind, id, detail], { url: baseUrl + '/poiagg' }, cacher);
   return re.poi as Poi;
 }
 

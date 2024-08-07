@@ -1,6 +1,7 @@
+import { Cache, FileCache } from './cache.js';
 import { baseUrl } from './config.js';
 import { Coord } from './coords.js';
-import { FetchOptions, xfrpc } from './request.js';
+import { xfrpc } from './request.js';
 
 export interface Point {
   source: string | undefined;
@@ -49,7 +50,7 @@ export async function request(
   endPoint: Point,
   criterion: RouteType,
   options: Partial<Options> = {},
-  fetch_options: Partial<FetchOptions> = { cache: true }
+  cacher: Cache = new FileCache()
 ): Promise<Response> {
   const start = Coord.toString([new Coord(startPoint.x, startPoint.y)]);
   const end = Coord.toString([new Coord(endPoint.x, endPoint.y)]);
@@ -76,7 +77,7 @@ export async function request(
       }
     ],
     { url: baseUrl + '/tplanner' },
-    fetch_options
+    cacher
   );
 }
 
