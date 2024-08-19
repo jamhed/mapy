@@ -1,7 +1,7 @@
 {
   "name": "mapycz-api",
   "description": "mapy.cz fastrpc and REST interfaces",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -38,6 +38,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "js-md5": "^0.8.3"
+    "js-md5": "^0.8.3",
+    "pino": "^9.3.2"
   }
 }

@@ -1,6 +1,8 @@
 import * as fs from 'fs';
+import * as fsp from 'fs/promises';
 import { md5 } from 'js-md5';
 import path from 'path';
+import logger from './logger';
 
 export class Cache {
   key(obj: any) {
@@ -9,31 +11,31 @@ export class Cache {
   is(_key: string): boolean {
     return false;
   }
-  get(_key: string): any {}
-  set(_key: string, _value: any) {}
+  async get(_key: string): Promise<any> {}
+  async set(_key: string, _value: any) {}
 }
 
 export class InMemoryCache extends Cache {
-  store: Record<string, any>
+  store: Record<string, any>;
   constructor() {
-    super()
-    this.store = {}
+    super();
+    this.store = {};
   }
   is(key: string): boolean {
-    return (key in this.store)
+    return key in this.store;
   }
-  get(key: string) {
+  async get(key: string) {
     return this.store[key];
   }
-  set(key: string, value: any) {
+  async set(key: string, value: any) {
     this.store[key] = value;
   }
 }
 
 export class FileCache extends Cache {
   constructor(private cachePath: string = 'cache') {
-    super()
-    if (!fs.existsSync(cachePath)) throw Error(`cache path:${cachePath} doesn't exist`)
+    super();
+    if (!fs.existsSync(cachePath)) throw Error(`cache path:${cachePath} doesn't exist`);
   }
   is(key: string): boolean {
     return fs.existsSync(this.path(key));
@@ -41,12 +43,13 @@ export class FileCache extends Cache {
   path(key: string): string {
     return path.join(this.cachePath, key);
   }
-  get(key: string) {
-    console.log(`reading cache from:${key}`)
-    return JSON.parse(fs.readFileSync(this.path(key), "utf8"));
+  async get(key: string) {
+    logger.debug({ key }, 'cache read');
+    const buffer = await fsp.readFile(this.path(key), 'utf8');
+    return JSON.parse(buffer);
   }
-  set(key: string, value: any) {
-    console.log(`writing cache to:${key}`)
-    fs.writeFileSync(this.path(key), JSON.stringify(value));
+  async set(key: string, value: any) {
+    logger.debug({ key }, 'cache write');
+    return fsp.writeFile(this.path(key), JSON.stringify(value));
   }
 }
