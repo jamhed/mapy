@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as fsp from 'fs/promises';
 import { md5 } from 'js-md5';
 import path from 'path';
-import logger from './logger';
+import logger from './logger.js';
 
 export class Cache {
   key(obj: any) {
