@@ -1,7 +1,7 @@
-import { Cache, FileCache } from './cache.js';
-import { baseUrl } from './config.js';
-import { Coord } from './coords.js';
-import { xfrpc } from './request.js';
+import { Cache, FileCache } from './cache';
+import { baseUrl } from './config';
+import { Coord } from './coords';
+import { xfrpc } from './request';
 
 export interface Point {
   source: string | undefined;

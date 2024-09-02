@@ -1,6 +1,6 @@
-import { Cache, FileCache } from './cache.js';
-import { baseUrl } from './config.js';
-import { xfrpc } from './request.js';
+import { Cache, FileCache } from './cache';
+import { baseUrl } from './config';
+import { xfrpc } from './request';
 
 export async function request(
   kind: Kind,

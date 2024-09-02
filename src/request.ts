@@ -1,5 +1,5 @@
-import { Cache, FileCache } from './cache.js';
-import { Hints, parse, serializeCall } from './fastrpc.js';
+import { Cache, FileCache } from './cache';
+import { type Hints, parse, serializeCall } from './fastrpc';
 
 export interface FetchOptions {
   cache: Cache;

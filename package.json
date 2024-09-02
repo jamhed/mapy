@@ -1,7 +1,7 @@
 {
   "name": "mapycz-api",
   "description": "mapy.cz fastrpc and REST interfaces",
-  "version": "0.2.2",
+  "version": "0.2.6",
   "type": "module",
   "license": "MIT",
   "author": {
@@ -9,7 +9,7 @@
     "email": "jamhedd@gmail.com"
   },
   "scripts": {
-    "pub": "rm -rf dist; npx tsc && npm publish",
+    "pub": "rm -rf dist; npx tsc && npx tsc-esm-fix && npm publish",
     "lint": "npx prettier -w src"
   },
   "repository": "git://github.com/jamhed/mapy.git",
@@ -30,11 +30,12 @@
     "api"
   ],
   "files": [
-    "/dist"
+    "dist"
   ],
   "devDependencies": {
     "@types/cacache": "^17.0.2",
     "prettier": "^3.3.3",
+    "tsc-esm-fix": "^3.0.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
