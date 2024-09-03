@@ -1,12 +1,20 @@
+import { type Cache, FileCache } from './cache';
 import { baseUrl } from './config';
+import logger from './logger';
 
 export async function request(
-  params: Partial<Request> = { count: 5, lang: 'en' }
+  params: Partial<Request> = { count: 5, lang: 'en' },
+  cacher: Cache = new FileCache()
 ): Promise<Result[]> {
   const url = new URL(baseUrl + '/suggest');
+  const key = cacher.key({ ...params, request: url });
+  if (cacher.is(key)) return cacher.get(key);
+  logger.info({ url }, 'fetching');
   Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value.toString()));
   const response = await fetch(url);
+  logger.info(response);
   const decodedResponse = (await response.json()) as Response;
+  cacher.set(key, decodedResponse.result);
   return decodedResponse.result;
 }
 
